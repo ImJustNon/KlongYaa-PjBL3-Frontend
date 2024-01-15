@@ -25,7 +25,7 @@ function SignUp() {
     const [ userName, setUserName ] = useState("");
     const [ emailAddress, setEmailAddress ] = useState("");
     const [ password, setPassword ] = useState("");
-    
+
     function handleSubmitSignUp(){
         fetch("http://127.0.0.1:5050/api/user/create", {
             method: "POST",
@@ -63,11 +63,11 @@ function SignUp() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
+                    <Avatar sx={{ m: 1, bgcolor: "black" }}>
+                        <i className="fa-solid fa-registered"></i>
+				    </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign up
+                        Register an Account
                     </Typography>
                     <Box noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>

@@ -15,18 +15,20 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useToast } from "@chakra-ui/react";
-
+import { useNavigate } from "react-router-dom";
+import { setUserToken } from '../utils/userToken';
 
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
 	const toast = useToast();
+	const navigate = useNavigate();
 
 	const [emailAddress, setEmailAddress] = useState("");
 	const [password, setPassword] = useState("");
 	const handleSubmitSignIn = (event) => {
-		fetch("http://127.0.0.1:5050/api/user/validate", {
+		fetch("https://klongyaa-pjbl3-backend.vercel.app/api/user/validate", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -36,7 +38,6 @@ export default function SignIn() {
 				userPassword: password
 			}),
 		}).then(response => response.json()).then(response =>{
-			console.log(response);
 			if(response.status === "FAIL"){
 				return toast({
 					title: response.message,
@@ -45,6 +46,18 @@ export default function SignIn() {
 					position: "bottom-right",
 					duration: 1500,
 				});
+			}
+			if(response.status === "OK"){
+				setUserToken(response.data.userToken);
+				toast({
+					title: response.message,
+					status: "success",
+					isClosable: true,
+					position: "bottom-right",
+					duration: 1500,
+				});
+				setTimeout(() => navigate("/"), 2500);
+				return;
 			}
 		});
 	};

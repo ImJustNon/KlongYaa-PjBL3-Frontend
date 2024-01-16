@@ -5,6 +5,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { config } from './config/config';
+import { removeUserToken } from './utils/userToken';
 
 function App() {
   const defaultTheme = createTheme();
@@ -12,10 +14,9 @@ function App() {
   const { pathname } = useLocation();
 
   // check access token before go another page
-  const preventCheckPages = ["/signin", "/signup"];
+  const preventCheckPages = config.pages.preventCheckTokenPaths;
   useEffect(() =>{
     const userToken = localStorage.getItem("userToken");
-    console.log(pathname);
     if(preventCheckPages.includes(pathname)) return;
     if(!userToken){
       return navigate("/signin");

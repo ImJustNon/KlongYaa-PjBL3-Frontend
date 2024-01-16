@@ -56,7 +56,7 @@ export default function SignIn() {
 					position: "bottom-right",
 					duration: 1500,
 				});
-				setTimeout(() => navigate("/"), 2500);
+				setTimeout(() => navigate("/home"), 2500);
 				return;
 			}
 		});

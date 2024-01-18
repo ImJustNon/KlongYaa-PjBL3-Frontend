@@ -40,13 +40,13 @@ function SlideBar({ open, toggleDrawer }){
             <List component="nav">
                 <ListItemButton onClick={() => navigate("/home")}>
                     <ListItemIcon>
-                        <DashboardIcon />
+                        <i className="fa-solid fa-house"></i>
                     </ListItemIcon>
                     <ListItemText primary="Home" />
                 </ListItemButton>
                 <ListItemButton onClick={() => navigate("/manage")}>
                     <ListItemIcon>
-                        <ShoppingCartIcon />
+                        <i className="fa-solid fa-list-check"></i>
                     </ListItemIcon>
                     <ListItemText primary="Manage" />
                 </ListItemButton>
@@ -56,7 +56,7 @@ function SlideBar({ open, toggleDrawer }){
                 </ListSubheader>
                 <ListItemButton onClick={() => removeUserToken()}>
                     <ListItemIcon>
-                        <AssignmentIcon />
+                        <i className="fa-solid fa-right-from-bracket"></i>
                     </ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItemButton>

@@ -54,7 +54,7 @@ function ManageList(){
         <>
             <ThemeProvider theme={defaultTheme}>
                 <CssBaseline />
-                <main>
+                <main> 
                     <Container sx={{ pt: 5, textAlign: "right" }} maxWidth="lg">
                         <Button variant="contained" onClick={onOpen}>
                             <i className="fa-solid fa-plus"></i> &nbsp; New Box

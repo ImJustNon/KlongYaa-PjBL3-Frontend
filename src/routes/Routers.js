@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Home from "../pages/Home";
-import { ManageBox, ManageList } from "../pages/Manage";
+import ManageList from "../pages/ManageList";
+import ManageBox from "../pages/ManageEdit";
 import AppLayout from "../pages/layout/AppLayout";
 
 
@@ -40,7 +41,7 @@ function Routers(){
                 } 
             />
             <Route 
-                path={'/manage/:boxId'} 
+                path={'/manage/:boxId/edit'} 
                 element={
                     <AppLayout>
                         <ManageBox />

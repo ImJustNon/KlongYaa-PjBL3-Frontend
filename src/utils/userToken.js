@@ -8,3 +8,7 @@ export function removeUserToken(){
     window.location.reload();
     return;
 }
+
+export function getUserToken(){
+    return localStorage.getItem("userToken");
+}

@@ -57,17 +57,21 @@ function ManageList(){
                 <main>
                     <Container sx={{ pt: 5, textAlign: "right" }} maxWidth="lg">
                         <Button variant="contained" onClick={onOpen}>
-                            <i className="fa-solid fa-plus"></i> &nbsp; Register New Box
+                            <i className="fa-solid fa-plus"></i> &nbsp; New Box
                         </Button>
                         <CreateNewBoxModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} update={setUpdateList} />
                     </Container>
                     <Container sx={{ py: 5 }} maxWidth="lg">
+                        {boxItems.length !== 0 ? 
+                           <Grid container spacing={5}>
+                                {boxItems.map((boxInfo,i) => (
+                                    <BoxCard key={i} boxName={boxInfo.box_name} boxId={boxInfo.box_id} update={setUpdateList} />
+                                ))}
+                            </Grid>
+                            :
+                            <div className="text-center text-3xl text-gray-600 my-10">Nothing To Show Here</div>
+                        }
                         
-                        <Grid container spacing={5}>
-                            {boxItems.map((boxInfo,i) => (
-                                <BoxCard key={i} boxName={boxInfo.box_name} boxId={boxInfo.box_id} update={setUpdateList} />
-                            ))}
-                        </Grid>
                     </Container>
                 </main>
             </ThemeProvider>

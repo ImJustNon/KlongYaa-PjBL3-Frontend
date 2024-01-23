@@ -19,7 +19,7 @@ function BoxCard({ boxName, boxId, update }) {
     const toast = useToast();
 
     function haddleEdit(){
-        navigate(`/manage/${boxId}/edit`)
+        navigate(`/manage/b/${boxId}`)
     }
     function haddleRemove(){
         const userToken = getUserToken();
@@ -58,13 +58,7 @@ function BoxCard({ boxName, boxId, update }) {
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <CardMedia
-                    component="div"
-                    sx={{
-                        pt: '56.25%',
-                    }}
-                    image={boxCardImage}
-                />
+                
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h6" component="h2">
                         Box Name : {boxName}

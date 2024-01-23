@@ -5,7 +5,7 @@ import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Home from "../pages/Home";
 import ManageList from "../pages/ManageList";
-import ManageBox from "../pages/ManageEdit";
+import ManageEditBox from "../pages/ManageEditBox";
 import AppLayout from "../pages/layout/AppLayout";
 
 
@@ -41,13 +41,14 @@ function Routers(){
                 } 
             />
             <Route 
-                path={'/manage/:boxId/edit'} 
+                path={'/manage/b/:boxId'} 
                 element={
                     <AppLayout>
-                        <ManageBox />
+                        <ManageEditBox />
                     </AppLayout>
                 } 
             />
+            
             <Route 
                 path={'*'} 
                 element={

@@ -7,11 +7,17 @@ import Home from "../pages/Home";
 import ManageList from "../pages/ManageList";
 import ManageEditBox from "../pages/ManageEditBox";
 import AppLayout from "../pages/layout/AppLayout";
-
+import { Redirect } from "../utils/Redirect";
 
 function Routers(){
     return(
         <Routes>
+            <Route 
+                path={'/'} 
+                element={
+                    <Redirect to={"/home"} />
+                } 
+            />
             <Route 
                 path={'/signin'} 
                 element={

@@ -75,7 +75,7 @@ export default function AlertTable({ rows, boxId, update }) {
                     <TableRow key={row.id}>
                         <TableCell align="center">{row.alert_id}</TableCell>
                         <TableCell align="center">{row.alert_name}</TableCell>
-                        <TableCell align="center">{row.alert_time}</TableCell>
+                        <TableCell align="center">{new Date(parseInt(row.alert_time)).toLocaleString()}</TableCell>
                         <TableCell align="center">{(JSON.parse(row.led_channel_id)).join(", ")}</TableCell>
                         <TableCell align="center">
                             <div className='flex flex-row justify-center gap-x-2 '>

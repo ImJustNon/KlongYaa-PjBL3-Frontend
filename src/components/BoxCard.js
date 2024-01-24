@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import boxCardImage from "../assets/images/optimized_smarttuuyaa.jpg";
-import plusSign from "../assets/images/plus_sign.png";
+import plusSign from "../assets/images/plus_sign.png"; 
 import { useNavigate } from "react-router-dom";
 import { getUserToken } from '../utils/userToken';
 import { useToast } from "@chakra-ui/react";

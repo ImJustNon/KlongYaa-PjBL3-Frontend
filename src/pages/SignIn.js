@@ -17,7 +17,7 @@ import { useState } from 'react';
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { setUserToken } from '../utils/userToken';
-
+import { getDeviceId } from '../utils/deviceId';
 
 const defaultTheme = createTheme();
 
@@ -48,19 +48,38 @@ export default function SignIn() {
 				});
 			}
 			if(response.status === "OK"){
-				setUserToken(response.data.userToken);
-				toast({
+				createLoginHistory(response.data.userToken);
+				return toast({
 					title: response.message,
 					status: "success",
 					isClosable: true,
 					position: "bottom-right",
 					duration: 1500,
 				});
-				setTimeout(() => navigate("/home"), 2500);
-				return;
 			}
 		});
 	};
+
+	function createLoginHistory(userToken){
+		const deviceId = getDeviceId();
+		fetch("https://klongyaa-pjbl3-backend.vercel.app/api/user/login/history/create", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				userToken: userToken,
+				deviceId: deviceId
+			}),
+		}).then(response => response.json()).then(response =>{
+			if(response.status === "FAIL"){
+				return console.log("Save to history : " + response.message);
+			}
+			console.log(response.message);
+			setUserToken(userToken);
+			return navigate("/home");
+		});
+	}
 
   return (
     <ThemeProvider theme={defaultTheme}>

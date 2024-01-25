@@ -6,7 +6,8 @@ import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { config } from './config/config';
-import { removeUserToken } from './utils/userToken';
+import { getUserToken, removeUserToken } from './utils/userToken';
+import { getDeviceId, createDeviceId } from "./utils/deviceId";
 
 function App() {
   const defaultTheme = createTheme();
@@ -22,6 +23,47 @@ function App() {
       return navigate("/signin");
     }
   }, []);
+
+  // create device id
+  useEffect(() =>{  
+    const deviceId = getDeviceId();
+    if(!deviceId){
+      // create new
+      fetch("https://klongyaa-pjbl3-backend.vercel.app/api/device/create", {
+        method: "POST",
+      }).then(response => response.json()).then(response =>{
+        if(response.status === "FAIL"){
+          return console.log(response.message);
+        }
+        createDeviceId(response.data.deviceId);
+        checkLoginExpire();
+      });
+    }
+    else {
+      checkLoginExpire();
+    }
+  }, []);
+
+  function checkLoginExpire(){
+    const userToken = getUserToken();
+    const deviceId = getDeviceId();
+    if(!userToken || !deviceId) return;
+    fetch("https://klongyaa-pjbl3-backend.vercel.app/api/user/login/history/checkexpire", {
+      method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				userToken: userToken,
+				deviceId: deviceId
+			}),
+    }).then(response => response.json()).then(response =>{
+      if(response.status === "FAIL"){
+        return console.log(response.message);
+      }
+      return console.log(response.message);
+    });
+  }
 
   return (
     <>

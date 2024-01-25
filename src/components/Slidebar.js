@@ -17,11 +17,35 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { useNavigate } from "react-router-dom";
-import { removeUserToken } from "../utils/userToken";
+import { getUserToken, removeUserToken } from "../utils/userToken";
+import { getDeviceId } from "../utils/deviceId";
 
 
 function SlideBar({ open, toggleDrawer }){
     const navigate = useNavigate();
+
+    function handleLogout(){
+        const userToken = getUserToken();
+        const deviceId = getDeviceId();
+        fetch("https://klongyaa-pjbl3-backend.vercel.app/api/device/create", {
+            method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				userToken: userToken,
+				deviceId: deviceId
+			}),
+        }).then(response => response.json()).then(response =>{
+            if(response.status === "FAIL"){
+				return console.log("Remove from history : " + response.message);
+			}
+            removeUserToken();
+            return console.log("Remove from history : " + response.message);
+        });
+
+    }
+
     return(
         <Drawer variant="permanent" open={open}>
             <Toolbar
@@ -54,7 +78,7 @@ function SlideBar({ open, toggleDrawer }){
                 <ListSubheader component="div" inset>
                     System
                 </ListSubheader>
-                <ListItemButton onClick={() => removeUserToken()}>
+                <ListItemButton onClick={() => handleLogout()}>
                     <ListItemIcon>
                         <i className="fa-solid fa-right-from-bracket"></i>
                     </ListItemIcon>

@@ -8,6 +8,7 @@ import ManageList from "../pages/ManageList";
 import ManageEditBox from "../pages/ManageEditBox";
 import AppLayout from "../pages/layout/AppLayout";
 import { Redirect } from "../utils/Redirect";
+import ResetPassword from "../pages/ResetPassword";
 
 function Routers(){
     return(
@@ -22,6 +23,12 @@ function Routers(){
                 path={'/signin'} 
                 element={
                     <SignIn />
+                } 
+            />
+            <Route 
+                path={'/signin/resetpass'} 
+                element={
+                    <ResetPassword />
                 } 
             />
             <Route 

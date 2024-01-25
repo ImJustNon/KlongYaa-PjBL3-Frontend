@@ -1,5 +1,5 @@
 export const config = {
     pages: {
-        preventCheckTokenPaths: ["/signin", "/signup"],
+        preventCheckTokenPaths: ["/signin", "/signup", "/signin/resetpass"],
     }
 }

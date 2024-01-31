@@ -12,7 +12,7 @@ function AlertModal({ isOpen, onOpen, onClose, update, mode, boxId }) {
     const finalRef = React.useRef(null);
 
     const [alertName, setAlertName] = useState("");
-    const [alertTime, setAlertTime] = useState("");
+    const [alertTime, setAlertTime] = useState(null);
     const [alertLedChannelId, setAlertLedChannelId] = useState([]);
 
 

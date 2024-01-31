@@ -114,7 +114,7 @@ function Home(){
                                     <TableRow key={i}>
                                         <TableCell>{i}</TableCell>
                                         <TableCell>{row.boxId}</TableCell>
-                                        <TableCell>{new Date(parseInt(row.timestamp)).toLocaleString()}</TableCell>
+                                        <TableCell>{new Date(parseInt(row.timestamp)).toUTCString()}</TableCell>
                                     </TableRow>
                                 ))}
                                 </TableBody>
@@ -133,7 +133,7 @@ function Home(){
                                         <TableCell>Alert ID</TableCell>
                                         <TableCell>Alert Name</TableCell>
                                         <TableCell>Channels</TableCell>
-                                        <TableCell>Time</TableCell>
+                                        <TableCell>Alert Time</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -144,7 +144,7 @@ function Home(){
                                             <TableCell>{todayAlert.alertId}</TableCell>
                                             <TableCell>{todayAlert.alertName}</TableCell>
                                             <TableCell>{todayAlert.channels.join(", ")}</TableCell>
-                                            <TableCell>{new Date(parseInt(todayAlert.alertTime)).toLocaleTimeString()}</TableCell>
+                                            <TableCell>{(new Date(parseInt(todayAlert.alertTime)).toTimeString()).split(" ")[0]}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

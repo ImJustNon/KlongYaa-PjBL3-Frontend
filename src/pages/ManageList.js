@@ -34,17 +34,10 @@ function ManageList(){
 			}),
         }).then(response => response.json()).then(response =>{
             if(response.status === "FAIL"){
-                return toast({
-					title: response.message,
-					status: "error",
-					isClosable: true,
-					position: "bottom-right",
-					duration: 1500,
-				});
+                return console.log("> ShowBoxList : " + response.message);
             }
             if(response.status === "OK"){
                 setBoxItems(response.data.results);
-                console.log(response.data.results);
             }
         });
     }, [updateList]);

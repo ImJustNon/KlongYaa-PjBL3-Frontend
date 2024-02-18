@@ -44,7 +44,6 @@ export default function SignIn() {
 					status: "error",
 					isClosable: true,
 					position: "bottom-right",
-					duration: 1500,
 				});
 			}
 			if(response.status === "OK"){
@@ -54,7 +53,6 @@ export default function SignIn() {
 					status: "success",
 					isClosable: true,
 					position: "bottom-right",
-					duration: 1500,
 				});
 			}
 		});
@@ -73,7 +71,7 @@ export default function SignIn() {
 			}),
 		}).then(response => response.json()).then(response =>{
 			if(response.status === "FAIL"){
-				return console.log("Save to history : " + response.message);
+				return console.log("> CreateLoginHistory : " + response.message);
 			}
 			console.log(response.message);
 			setUserToken(userToken);

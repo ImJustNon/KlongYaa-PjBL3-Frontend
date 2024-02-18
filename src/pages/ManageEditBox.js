@@ -42,13 +42,7 @@ function ManageEditBox(props){
 			}),
         }).then(response => response.json()).then(response =>{
             if(response.status === "FAIL"){
-                return toast({
-					title: response.message,
-					status: "error",
-					isClosable: true,
-					position: "bottom-right",
-					duration: 1500,
-				});
+                return console.log("> ShowAlertList : " + response.message);
             }
 
             if(response.status === "OK"){

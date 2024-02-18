@@ -33,12 +33,7 @@ function Home(){
 			}),
         }).then(response => response.json()).then(response =>{
             if(response.status === "FAIL"){
-				return toast({
-					title: response.message,
-					status: "error",
-					isClosable: true,
-					position: "bottom-right",
-				});
+				return console.log("> GetStatus : " + response.message);
 			}
             if(response.status === "OK"){
                 setLastOnlineTableRows(response.data.results);
@@ -60,12 +55,7 @@ function Home(){
 			}),
         }).then(response => response.json()).then(response =>{
             if(response.status === "FAIL"){
-				return toast({
-					title: response.message,
-					status: "error",
-					isClosable: true,
-					position: "bottom-right",
-				});
+				return console.log("> AlertSchedule : " + response.message);
 			}
             if(response.status === "OK"){
                 setTodayAlertSchedule(response.data.todayAlerts);

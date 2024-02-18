@@ -25,30 +25,32 @@ function App() {
   }, []);
 
   // create device id
-  useEffect(() =>{  
-    const deviceId = getDeviceId();
-    if(!deviceId){
-      // create new
-      fetch("https://klongyaa-pjbl3-backend.vercel.app/api/device/create", {
-        method: "POST",
-      }).then(response => response.json()).then(response =>{
-        if(response.status === "FAIL"){
-          return console.log(response.message);
-        }
-        createDeviceId(response.data.deviceId);
-        checkLoginExpire();
-      });
-    }
-    else {
-      checkLoginExpire();
-    }
+  useEffect(() =>{ 
+    (async() =>{
+      const deviceId = getDeviceId();
+      if(!deviceId){
+        // create new
+        await fetch("https://klongyaa-pjbl3-backend.vercel.app/api/device/create", {
+          method: "POST",
+        }).then(response => response.json()).then(async response =>{
+          if(response.status === "FAIL"){
+            return console.log("> CreateNewDeviceId : " + response.message);
+          }
+          createDeviceId(response.data.deviceId);
+          await checkLoginExpire();
+        });
+      }
+      else {
+        await checkLoginExpire();
+      }
+    })(); 
   }, []);
 
-  function checkLoginExpire(){
+  async function checkLoginExpire(){
     const userToken = getUserToken();
     const deviceId = getDeviceId();
     if(!userToken || !deviceId) return;
-    fetch("https://klongyaa-pjbl3-backend.vercel.app/api/user/login/history/checkexpire", {
+    await fetch("https://klongyaa-pjbl3-backend.vercel.app/api/user/login/history/checkexpire", {
       method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -59,9 +61,9 @@ function App() {
 			}),
     }).then(response => response.json()).then(response =>{
       if(response.status === "FAIL"){
-        return console.log(response.message);
+        return console.log("> CheckLoginHistory : " + response.message);
       }
-      return console.log(response.message);
+      return console.log("> CheckLoginHistory : " + response.message);
     });
   }
 

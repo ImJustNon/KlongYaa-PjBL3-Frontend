@@ -14,7 +14,7 @@ function Footer(props) {
       url: "#"
     },
     {
-      name: "NOrNor",
+      name: "NOthiNg",
       url: "#"
     },
     {

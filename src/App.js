@@ -63,7 +63,12 @@ function App() {
       if(response.status === "FAIL"){
         return console.log("> CheckLoginHistory : " + response.message);
       }
-      return console.log("> CheckLoginHistory : " + response.message);
+      if(response.data.isExpire === true){
+        console.log("> CheckLoginHistory : " + response.message);
+        removeUserToken();
+        return window.location.reload();
+      }
+      console.log("> CheckLoginHistory : " + response.message);
     });
   }
 

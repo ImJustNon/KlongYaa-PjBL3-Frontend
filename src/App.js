@@ -34,7 +34,9 @@ function App() {
           method: "POST",
         }).then(response => response.json()).then(async response =>{
           if(response.status === "FAIL"){
-            return console.log("> CreateNewDeviceId : " + response.message);
+            console.log("> CreateNewDeviceId : " + response.message);
+            console.log(response.error);
+            return;
           }
           createDeviceId(response.data.deviceId);
           await checkLoginExpire();
@@ -61,7 +63,9 @@ function App() {
 			}),
     }).then(response => response.json()).then(response =>{
       if(response.status === "FAIL"){
-        return console.log("> CheckLoginHistory : " + response.message);
+        console.log("> CheckLoginHistory : " + response.message);
+        console.log(response.error);
+        return;
       }
       if(response.data.isExpire === true){
         console.log("> CheckLoginHistory : " + response.message);

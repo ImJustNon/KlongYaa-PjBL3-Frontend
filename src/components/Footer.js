@@ -29,9 +29,6 @@ function Footer(props) {
         <hr />
       </div>
       <div className='text-md'>
-        Copyright © 2023 - {new Date().getFullYear()}, All right reserved
-      </div>
-      <div className='text-md'>
         กลุ่มโปรเจค : กล่องยาเเจ้งเตือน
       </div>
       <div className='text-md'>

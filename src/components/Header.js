@@ -33,7 +33,7 @@ function Header({ open, toggleDrawer }){
                     noWrap
                     sx={{ flexGrow: 1 }}
                 >
-                    Dashboard
+                    Medicine Alert Box Dashboard / หน้าจัดการกล่องยาเเจ้งเตือน
                 </Typography>
                 <IconButton color="inherit">
                     <Badge badgeContent={4} color="secondary">

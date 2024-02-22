@@ -13,7 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import { useState, useEffect } from 'react';
 import { getUserToken } from '../utils/userToken';
 import { useToast } from "@chakra-ui/react";
-
+import bannerImage from "../assets/images/banner.png";
   
 
 function Home(){
@@ -74,10 +74,10 @@ function Home(){
                             p: 2,
                             display: 'flex',
                             flexDirection: 'column',
-                            height: 240,
+                            height: "auto",
                         }}
                         >
-                        {/* <Chart /> */}
+                            <img src={bannerImage} className='w-fit h-fit' />
                         </Paper>
                     </Grid>
                     {/* Recent Deposits */}
@@ -102,9 +102,9 @@ function Home(){
                                 <TableBody>
                                 {lastOnlineTableRows.map((row, i) => (
                                     <TableRow key={i}>
-                                        <TableCell>{i}</TableCell>
+                                        <TableCell>{i + 1}</TableCell>
                                         <TableCell>{row.boxId}</TableCell>
-                                        <TableCell>{new Date(parseInt(row.timestamp)).toUTCString()}</TableCell>
+                                        <TableCell>{new Date(parseInt(row.timestamp) + (7 * 60 * 60 * 1000)).toUTCString()}</TableCell>
                                     </TableRow>
                                 ))}
                                 </TableBody>
